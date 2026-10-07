@@ -1,0 +1,1 @@
+Implemented deterministic scalar residual-control prototype; tests and CI are green. Learned RL and broader empirical comparison remain future work.
