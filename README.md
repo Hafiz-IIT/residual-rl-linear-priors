@@ -3,6 +3,8 @@
 > **Research prototype:** studying whether a learned residual controller can improve a transparent linear control prior without replacing its structure.
 
 ## Research question
+
+<p align="center"><a href="https://github.com/Hafiz-IIT/residual-rl-linear-priors/actions"><img src="https://img.shields.io/github/actions/workflow/status/Hafiz-IIT/residual-rl-linear-priors/ci.yml?label=CI" alt="CI"/></a></p>
 Can a residual policy learn a useful correction to a known linear controller while preserving an interpretable baseline?
 
 ## Implemented
