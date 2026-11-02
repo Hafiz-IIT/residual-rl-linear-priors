@@ -1,27 +1,30 @@
 # Residual RL with Linear Priors
 
-> **Research prototype:** studying whether a learned residual controller can improve a transparent linear control prior without replacing its structure.
+A deterministic scalar residual-control prototype exploring how a bounded nonlinear correction changes a transparent linear baseline.
 
 ## Research question
-
-<p align="center"><a href="https://github.com/Hafiz-IIT/residual-rl-linear-priors/actions"><img src="https://img.shields.io/github/actions/workflow/status/Hafiz-IIT/residual-rl-linear-priors/ci.yml?label=CI" alt="CI"/></a></p>
-Can a residual policy learn a useful correction to a known linear controller while preserving an interpretable baseline?
+Can a residual term complement a nominal linear controller while keeping the correction bounded and the baseline inspectable?
 
 ## Implemented
 - scalar linear baseline controller
-- residual correction
-- configurable action bounds
-- deterministic rollout
-- baseline-vs-residual comparison
+- configurable nonlinear residual correction
+- residual and total-action saturation
+- matched nominal-only versus residual-enabled rollout
+- state, action, and stage-cost traces
+- input validation and deterministic regression tests
 
-## Quickstart
-```bash
-python demo.py
-python -m unittest discover -s tests -v
-```
+## Run
+    python demo.py
+    python -m unittest discover -s tests -v
 
-## Boundary
-This repository is a reproducible control experiment, not a claim of safe deployment, benchmark superiority, or published research.
+## Important terminology boundary
+Despite the research direction's connection to residual reinforcement learning, the current implementation does **not** train an RL policy. The residual is a fixed nonlinear function. This repository is a control scaffold for future experiments, not a trained agent, robotic deployment, or safety guarantee.
 
-Related: [Safe RL Action Gate](https://github.com/Hafiz-IIT/safe-rl-action-gate) · [Hybrid LQR + RL Control](https://github.com/Hafiz-IIT/hybrid-lqr-rl-control)
-\n\n## Evidence status\n\nThis repository is the **primary executable prototype** for the residual-control idea. The companion manuscript lives in [residual-rl-linear-priors-paper](https://github.com/Hafiz-IIT/residual-rl-linear-priors-paper).\n\n## Results and limitations\n\nThe included demo and tests define the reproducible experiment. They do not establish empirical superiority over a broad control benchmark. The current implementation is intentionally small and deterministic; real robotic dynamics, disturbance distributions, and hardware validation are outside scope.\n\n## What is implemented vs planned\n\n**Implemented:** scalar linear prior, residual correction, action bounds, deterministic rollout, comparison scaffolding.\n\n**Not claimed:** learned-policy deployment, formal safety guarantees, benchmark-wide superiority, or physical validation.\n
+## Evaluation
+See [EVALUATION.md](EVALUATION.md) for proposed matched-baseline comparisons, metrics, and stress tests.
+
+## Related work
+- [Safe RL Action Gate](https://github.com/Hafiz-IIT/safe-rl-action-gate)
+- [Koopman Control Lab](https://github.com/Hafiz-IIT/koopman-control-lab)
+- [Hybrid LQR + RL Control](https://github.com/Hafiz-IIT/hybrid-lqr-rl-control)
+- [Manuscript in preparation](https://github.com/Hafiz-IIT/residual-rl-linear-priors-paper)
