@@ -27,6 +27,10 @@ class ResidualRolloutTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             Config(damping=float("inf"))
 
+    def test_extremely_large_integer_state_is_rejected_cleanly(self):
+        with self.assertRaises(ValueError):
+            rollout(10 ** 10000)
+
     def test_invalid_steps(self):
         with self.assertRaises(ValueError):
             rollout(1.0, steps=-1)
