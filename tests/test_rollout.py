@@ -16,6 +16,17 @@ class ResidualRolloutTests(unittest.TestCase):
         self.assertEqual(len(result["actions"]), 5)
         self.assertEqual(len(result["costs"]), 5)
 
+    def test_noninteger_steps_rejected(self):
+        for value in (True, 2.5):
+            with self.subTest(value=value), self.assertRaises(ValueError):
+                rollout(1.0, steps=value)
+
+    def test_nonfinite_inputs_rejected(self):
+        with self.assertRaises(ValueError):
+            rollout(float("nan"))
+        with self.assertRaises(ValueError):
+            Config(damping=float("inf"))
+
     def test_invalid_steps(self):
         with self.assertRaises(ValueError):
             rollout(1.0, steps=-1)
